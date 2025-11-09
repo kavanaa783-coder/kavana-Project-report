@@ -1,0 +1,800 @@
+\documentclass[12pt, a4paper]{report}
+\usepackage{graphicx}
+\usepackage{csquotes}
+\usepackage{geometry}
+\usepackage{ragged2e}
+\usepackage{setspace}
+\usepackage{mathptmx}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{array}
+
+
+\geometry{a4paper, total = {210mm, 297mm}, left=31.75mm, right=25.4mm, top=25.4mm, bottom=25.4mm}
+
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries}
+  {\fontsize{16}{19}\selectfont\chaptertitlename\ \thechapter}
+  {20pt}
+  {\huge\centering}
+\titlespacing*{\chapter}{0pt}{-10pt}{20pt}
+
+\titleformat{\section}
+  {\normalfont\fontsize{16}{15}\bfseries}{\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+
+% Custom environments for various pages
+\newenvironment{coverPage}{\begin{titlepage}\begin{center}}{\end{center}\end{titlepage}}
+\newenvironment{certificatePage}{\begin{titlepage}\begin{center}}{\end{center}\end{titlepage}}
+
+\newenvironment{Abstract}{
+    \clearpage
+    \pagestyle{plain}
+    \pagenumbering{roman}
+    \setcounter{page}{1}
+    \begin{center}
+}{
+    \end{center}
+}
+
+\newenvironment{acknowledgment}{
+    \clearpage
+    \pagestyle{plain}
+    \begin{center}
+}{
+    \end{center}
+}
+\newenvironment{tableOfContents}{
+    \clearpage
+    \pagestyle{plain}
+    \begin{center}
+    \textbf{\fontsize{18}{22}\selectfont TABLE OF CONTENTS}
+    \vspace{0.8cm}
+}{
+    \end{center}
+}
+\newenvironment{ListOfFigures}{
+    \clearpage
+    \pagestyle{plain}
+    \begin{center}
+    \textbf{\fontsize{18}{22}\selectfont LIST OF FIGURES}
+    \vspace{1cm}
+}{
+    \end{center}
+}
+\newenvironment{ListOfTables}{
+    \clearpage
+    \pagestyle{plain}
+    \begin{center}
+    \textbf{\fontsize{18}{22}\selectfont LIST OF TABLES}
+    \vspace{1cm}
+}{
+    \end{center}
+}
+
+% Set up fancy style for introduction and onwards
+\fancypagestyle{fancy}{
+  \fancyhf{}
+  \fancyhead[C]{\textbf{AI-Powered Symptom Checker Doctor Appointment System}}
+  \fancyfoot[L]{\textbf{Dept of CS\&E, CEC}}
+  \fancyfoot[R]{\textbf{Page \thepage}}
+  \renewcommand{\headrulewidth}{2pt}
+  \renewcommand{\footrulewidth}{2pt}
+}
+
+% Redefine plain style to match fancy for chapter pages
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyhead[C]{\textbf{AI-Powered Symptom Checker Doctor Appointment System}}
+  \fancyfoot[L]{\textbf{Dept of CS\&E, CEC}}
+  \fancyfoot[R]{\textbf{Page \thepage}}
+  \renewcommand{\headrulewidth}{2pt}
+  \renewcommand{\footrulewidth}{2pt}
+}
+
+% Modify chapter command to use fancy style
+\let\oldchapter\chapter
+\renewcommand{\chapter}{\thispagestyle{fancy}\oldchapter}
+
+\newenvironment{introduction}{
+    \clearpage
+    \onehalfspacing
+    \pagestyle{fancy}
+    \pagenumbering{arabic}
+    \setcounter{page}{1}
+}{
+    \clearpage
+    \pagestyle{fancy}
+}
+
+\newenvironment{LiteratureSurvey}{
+    \clearpage
+    \onehalfspacing
+    \pagestyle{fancy}
+}{
+    \clearpage
+    \pagestyle{fancy}
+}
+
+\newenvironment{systemrequirement}{
+    \clearpage
+    \onehalfspacing
+    \pagestyle{fancy}
+}{
+    \clearpage
+    \pagestyle{fancy}
+}
+
+
+\newenvironment{systemdesign}{
+    \clearpage
+    \onehalfspacing
+    \pagestyle{fancy}
+}{
+    \clearpage
+    \pagestyle{fancy}
+}
+
+\newenvironment{implementation}{
+    \clearpage
+    \onehalfspacing
+    \pagestyle{fancy}
+}{
+    \clearpage
+    \pagestyle{fancy}
+}
+
+\newenvironment{ResultAndAnalysis}{
+    \clearpage
+    \onehalfspacing
+    \pagestyle{fancy}
+}{
+    \clearpage
+    \pagestyle{fancy}
+}
+
+% Begin the document
+\begin{document}
+
+% ----------------------- Cover Page Start -------------------------------
+
+\begin{coverPage}
+    \textbf{\fontsize{18}{22}\selectfont \makebox[0pt][c]{VISVESVARAYA TECHNOLOGICAL UNIVERSITY}} \\
+    \vspace{0.1in}
+    {\fontsize{16}{22}\selectfont \enquote{Jnana Sangama}, Belagavi, Karnataka-590018} \\
+    \vspace{0.3in}
+    \includegraphics[scale=0.15]{vtu.png} \\
+    \vspace{0.3in}
+    
+    \textbf{\fontsize{18}{22}\selectfont A MINI PROJECT REPORT} \\
+    \vspace{0.1in}
+    \textbf{\fontsize{16}{22}\selectfont ON} \\
+    \vspace{0.1in}
+    \textbf{\fontsize{16}{22}\selectfont AI-Powered Symptom Checker & Doctor Appointment System} \\
+    \vspace{0.2in}
+    {\fontsize{14}{22}\selectfont Submitted in partial fulfillment of the requirements for the degree of} \\
+    \vspace{0.1in}
+    \textbf{\fontsize{14}{22}\selectfont BACHELOR OF ENGINEERING} \\ 
+    \textbf{\fontsize{14}{22}\selectfont IN} \\ 
+    \textbf{\fontsize{14}{22}\selectfont COMPUTER SCIENCE AND ENGINEERING} \\
+    \vspace{0.2in}
+    
+    \textbf{\fontsize{14}{22}\selectfont Submitted by} \\
+    \vspace{0.08in}
+    \begin{tabular}{ll}
+    
+    \fontsize{14}{22}\selectfont \textbf{4CB23CS083} & 
+        \fontsize{14}{22}\selectfont \textbf{M Mahimashree} \\
+    \fontsize{14}{22}\selectfont \textbf{4CB23CS066} & 
+    \fontsize{14}{22}\selectfont \textbf{K Kamakshi Shenoy} \\
+    \fontsize{14}{22}\selectfont \textbf{4CB23CS073} &
+        \fontsize{14}{22}\selectfont \textbf{Kavana A} \\
+        \fontsize{14}{22}\selectfont \textbf{4CB23CS088} &
+        \fontsize{14}{22}\selectfont \textbf{Manyashree P N} \\
+    \end{tabular} \\
+    \vspace{0.2in}
+    
+    \textbf{\fontsize{14}{22}\selectfont Under the Guidance of} \\
+        \vspace{0.1in}
+    \textbf{\fontsize{14}{22}\selectfont Ms.Saritha Suvarna} \\
+    \fontsize{12}{22}\selectfont  \textbf{Assistant Professor, Dept. of CSE}\\
+    \vspace{0.2in}
+
+    \includegraphics[scale=0.8]{image.png} \\
+    {\textbf{\fontsize{14}{22}\selectfont DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING}} \\
+    \textbf{\fontsize{18}{22}\selectfont CANARA ENGINEERING COLLEGE} \\
+      {\textbf{\fontsize{12}{20}\selectfont {(\textbf{An Autonomous Institution, Under VTU, Belagavi and Recognized by AICTE, Accredited by NBA (CSE, ISE, ECE) and NAAC ’A’ GRADE})}} \\
+    {\textbf{\fontsize{14}{22}\selectfont \makebox[0pt][c]{SUDHINDRA NAGARA, BENJANAPADAVU, MANGALURU-574219, KARNATAKA}}} \\
+    \vspace{0.1in}
+    {\textbf{\fontsize{14}{22}\selectfont 2025-2026}}
+\end{coverPage}
+
+\clearpage
+% ----------------------- Cover Page Done -------------------------------
+
+% ----------------------- Certificate Page Start ------------------------
+\begin{certificatePage}
+    \textbf{\fontsize{20}{22}\selectfont CANARA ENGINEERING COLLEGE} \\
+     \vspace{0.1in}
+     {\textbf{\fontsize{12}{20}\selectfont {(An Autonomous Institution, Under VTU, Belagavi and Recognized by AICTE, Accredited by NBA (CSE, ISE, ECE) and NAAC ’A’ GRADE)}} \\
+      \vspace{0.1in}
+     {\textbf{\fontsize{14}{22}\selectfont \makebox[0pt][c]{SUDHINDRA NAGARA, BENJANAPADAVU, MANGALURU-574219, KARNATAKA}}} \\
+    \vspace{0.2in}
+    \textbf{\fontsize{12}{22}\selectfont DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING}\\
+    \vspace{0.3in}
+    \includegraphics[scale = 0.8]{image.png}
+    \\
+    \begin{center}
+        
+   
+    \vspace{0.4in}
+    \textbf{\fontsize{20}{22}\selectfont CERTIFICATE} \\
+    \vspace{0.2in}
+    \justify
+    \fontsize{11}{22}\selectfont This is to certify that the mini project work entitled \textbf{AI-Powered Symptom Checker & Doctor Appointment System} carried out by \textbf{Ms. M Mahimashree (4CB23CS083)}, \textbf{Ms. K Kamakshi Shenoy (4CB23CS066)}, \textbf{Ms. Kavana A (4CB23CS073)} and \textbf{Ms. Manyashree P N (4CB23CS088)},  a bonafide student of \textbf{CANARA ENGINEERING COLLEGE, BENJANAPADAVU} in partial fulfillment for the award of \textbf{BACHELOR OF ENGINEERING} in \textbf{COMPUTER SCIENCE AND ENGINEERING} of the \textbf{VISVESVARAYA TECHNOLOGICAL UNIVERSITY, BELAGAVI} during the year \textbf{2025 - 2026}. The project report has been approved as it satisfies the academic requirements in respect of Mini Project work prescribed for the said Degree.\\
+    \\
+    \\
+    \\
+    \noindent
+     \end{center}
+    \begin{minipage}[t]{0.3\textwidth}
+        \begin{center}
+            \hrulefill \\
+            \textbf{\fontsize{12}{22}\selectfont Signature} \\
+            \textbf{\fontsize{12}{22}\selectfont Project Guide} \\  
+        \end{center}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.3\textwidth}
+        \begin{center}
+            \hrulefill \\
+            \textbf{\fontsize{12}{22}\selectfont Signature} \\
+            \textbf{\fontsize{12}{22}\selectfont Head of Department} \\
+        \end{center}
+    \end{minipage}
+\end{certificatePage}
+\clearpage
+
+% ----------------------- Certificate Page Done ------------------------
+
+% ----------------------- Abstract Page ------------------------
+
+\begin{Abstract}
+\fontsize{20}{22}
+    \textbf{ ABSTRACT}
+    \vspace{0.1in}
+    \justify
+    \onehalfspacing
+    \fontsize{12}{22}\selectfont
+   The project titled “AI Powered Symptom Checker and Doctor Appointment System” aims to provide an intelligent and user-friendly healthcare platform that efficiently connects patients with the right doctors. The system allows patients to enter their symptoms, which are analyzed by an AI-based module that asks relevant follow-up questions to better understand the condition. Based on the analysis, doctor specialization, availability, and ratings, the system recommends the most suitable doctors for consultation. Patients can then book appointments seamlessly, while doctors can view and manage these bookings through their respective dashboards. Once confirmed, appointment details are automatically updated on both dashboards. An admin module manages users, doctors, and appointments to ensure smooth system operation. By leveraging artificial intelligence, this project simplifies preliminary diagnosis, improves healthcare accessibility, and enhances the overall efficiency of doctor-patient interaction.
+
+\end{Abstract}
+\begin{acknowledgment}
+    \textbf{\fontsize{20}{22}\selectfont ACKNOWLEDGEMENT}\\
+    \vspace{0.1in}
+    \justify
+    \fontsize{12}{22}\selectfont It is my great pleasure to acknowledge the assistance and contributions of all the people who helped me to make my Mini Project successful.
+    \vspace{0.3in} \\
+    \fontsize{12}{22}\selectfont I wish to express my deepest gratitude to project guide \textbf{Ms. Saritha Suvarna }, \textbf{Department of Computer Science and Engineering, CEC, Mangalore}, for her invaluable support, guidance, and encouragement throughout the duration of this project.
+    \vspace{0.3in} \\
+    \fontsize{12}{22}\selectfont I extend my thanks to \textbf{Ms.  Saritha Suvarna}, \textbf{Project Coordinator,  Department of Computer Science \& Engineering, CEC, Mangalore}, for her exceptional support and coordination throughout this project. 
+    \vspace{0.3in} \\
+    \fontsize{12}{22}\selectfont I am extremely grateeful to \textbf{Dr.Karthik Pai, Head of the Computer Science \& Engineering Department, CEC}, Mangalore, for his moral support and valuable suggestions throughout this project.
+    \vspace{0.3in} \\
+    \fontsize{12}{22}\selectfont I thank \textbf{Dr. Demian Antony D'Mello, Vice Principal, CEC, Mangalore}, for his valuable suggestions throughout this project.
+      \vspace{0.3in} \\
+    \fontsize{12}{22}\selectfont I would like to express my deepest gratitude to our \textbf{Principal, Dr. Nagesh H R} whose
+unwavering support and guidance have been instrumental in the successful completion of
+this project.
+    \vspace{0.3in} \\
+    \fontsize{12}{22}\selectfont I thank all the faculty and technical staff of \textbf{ Department of Computer Science & Engineering} for their kind help. \\
+    \noindent\makebox[\textwidth][r]{
+        \begin{minipage}{2.8in}
+        
+        \raggedright
+        \textbf{\fontsize{12}{22}\selectfont M Mahimashree} \hfill
+        \raggedleft
+        \textbf{\fontsize{12}{22}\selectfont 4CB23CS083} \\
+        \raggedright
+        \textbf{\fontsize{12}{22}\selectfont K Kamakshi Shenoy} \hfill
+        \raggedleft
+        \textbf{\fontsize{12}{22}\selectfont 4CB23CS066} \\
+        \raggedright
+        \textbf{\fontsize{12}{22}\selectfont Kavana A} \hfill
+        \raggedleft
+        \textbf{\fontsize{12}{22}\selectfont 4CB23CS073} \\
+         \raggedright
+        \textbf{\fontsize{12}{22}\selectfont Manyashree P N} \hfill
+        \raggedleft
+        \textbf{\fontsize{12}{22}\selectfont 4CB23CS088} \\
+        \end{minipage}
+    }
+    
+\end{acknowledgment}
+\clearpage
+
+
+% ----------------------- Table OF Contents Page ------------------------
+\begin{tableOfContents}
+\end{tableOfContents}
+
+% Generate table of contents without changing page style
+\begingroup
+  \let\clearpage\relax
+  \let\cleardoublepage\relax
+  \renewcommand{\contentsname}{}  % Remove the default "Contents" heading
+  
+  % Remove dots from TOC
+  \makeatletter
+  \renewcommand{\@dotsep}{10000}
+  
+  % Preserve the current page style
+  \let\ps@toc\ps@plain
+  \let\ps@plain\ps@plain
+  
+  % Add custom headings
+  \noindent\textbf{\fontsize{16}{22}\selectfont CHAPTERS\hfill PAGE NO}\par
+  \vspace{0.5em} % Add some space after the headings
+  
+  % Make main section titles normal (non-bold)
+  \let\oldl@chapter\l@chapter
+  \def\l@chapter#1#2{\oldl@chapter{\normalfont#1}{\normalfont#2}}
+  
+  % Use \@starttoc instead of \tableofcontents to avoid page style changes
+  \@starttoc{toc}
+  \makeatother
+\endgroup
+
+\clearpage
+
+% ----------------------- Table Of Contents Page Done ------------------------
+
+
+% ----------------------- List of Figures Page ----------------------%
+% LIST OF FIGURES
+
+
+
+% Avoid page breaks
+
+
+
+
+\begin{table}[h]
+\centering
+{\Large \textbf{LIST OF FIGURES}} % Centered and correctly formatted title
+\vskip 3em % Add vertical spacing after the title
+\begin{tabular}{@{}p{0.2\textwidth}@{\hspace{1em}}p{0.65\textwidth}p{0.15\textwidth}@{}}
+  \textbf{FIGURE NO.} & \textbf{FIGURE NAME} & \textbf{PAGE NO.} \\ \\
+  4.1 & System Architecture Design of Eventra & 13 \\ \\
+  4.2 & Use Case Diagram of Eventra & 14 \\ \\
+  6.1 & Landing page of Eventra & 20 \\ \\
+  6.2 & Selecting role for Signup of Eventra & 21 \\ \\
+  6.3 &  Signup pages for different user roles of Eventra & 21 \\ \\
+  6.4 & Login page of Eventra & 22 \\ \\
+  6.5 & Service provider dashboard of Eventra & 22 \\ \\
+  6.6 & Logout in dashboard of Eventra & 23 \\ \\
+  6.7 & Event creator dashboard of Eventra & 23 \\ \\
+  6.8 & Complete details of service page of Eventra & 24 \\ \\
+  6.9 & Selected category page of Eventra & 25 \\ \\
+  6.10 & Event summary page of Eventra & 26 \\ \\
+  6.11 & Confirm event feature of Eventra & 27 \\ \\
+  6.12 & Dashboard of Event creator after event planning of Eventra & 27 \\ \\
+  6.13 & Logout pop up of Eventra & 28 \\ \\
+  6.14 & Email sent for different users of Eventra & 29\\ \\
+ 
+ 
+\end{tabular}
+\end{table}
+
+
+
+
+
+
+
+
+
+\begin{ListOfTables}
+\centering
+\vskip 0.8em % Add small spacing after the title (adjust as needed)
+\begin{tabular}{@{}p{0.2\textwidth}@{\hspace{1em}}p{0.65\textwidth}p{0.15\textwidth}@{}}
+  \textbf{TABLE NO.} & \textbf{TABLE NAME} & \textbf{PAGE NO.} \\ \\
+  5.1 & Test Cases for Login functionality of Eventra & 18 \\ \\
+  5.2 & Test Cases for Signup functionality of Eventra & 18 \\ \\
+  5.3 & Test Cases for other functionalities of Eventra & 18 \\ \\
+\end{tabular}
+\end{ListOfTables}
+
+
+
+
+
+
+
+
+
+
+% ----------------------- List Of Tables Page ------------------------
+
+
+% \begin{ListOfTables}
+% \end{ListOfTables}
+
+% % Generate list of tables without changing page style
+% \begingroup
+%   \let\clearpage\relax
+%   \let\cleardoublepage\relax
+%   \renewcommand{\listtablename}{}  % Remove the default "List of Tables" heading
+%   % \addtocontents{lot}{\protect\thispagestyle{plain}}
+  
+%   % Remove dots from list of tables
+%   \makeatletter
+%   \renewcommand{\@dotsep}{10000}
+  
+%   % Preserve the current page style
+%   \let\ps@lot\ps@plain
+%   \let\ps@plain\ps@plain
+  
+%   % Use \@starttoc instead of \listoftables to avoid page style changes
+%   \@starttoc{lot}
+%   \makeatother
+% \endgroup
+
+% \clearpage
+% % Reset the page style for subsequent pages
+% \pagestyle{fancy}
+
+% Set up the header and footer for all pages from here onwards
+
+\begin{introduction}
+    \chapter{Introduction}
+    \vspace{0.2in}
+    \pagestyle{fancy}
+    \section{Overview}
+    \justify
+\fontsize{12}{22} \selectfont 
+In today’s fast-paced world, access to timely and accurate healthcare remains a major challenge for many individuals. Patients often struggle to understand their symptoms, identify the right specialist, and secure prompt medical consultations. These challenges are compounded by long waiting times, fragmented communication between patients and doctors, and the absence of a streamlined system for scheduling appointments. Delays in diagnosis and treatment not only increase patient discomfort but can also lead to serious health complications.
+
+\justify
+\vspace{0.1in}
+To address these issues, the AI Powered Symptom Checker and Doctor Appointment System has been developed as a modern, intelligent, and user-friendly healthcare platform designed to enhance the overall patient experience. The system leverages the power of artificial intelligence (AI) to provide an initial assessment of a patient’s health based on the symptoms they input. The AI module intelligently analyzes the provided information and generates relevant follow-up questions to better understand the condition. Based on this analysis, the system recommends the most suitable doctors, considering factors such as specialization, experience, availability, and patient ratings. This ensures that patients are connected with professionals who are best equipped to address their medical concerns efficiently, reducing the likelihood of misdiagnosis or unnecessary consultations.
+\justify
+\vspace{0.1in}
+A key feature of the system is its appointment management functionality. Once a patient selects a doctor, they can book an appointment seamlessly through the platform. Both patients and doctors have dedicated dashboards: doctors can view, confirm, reschedule, or cancel appointments, while patients receive automatic notifications and updates regarding their bookings. This two-way interactive system facilitates better communication, minimizes scheduling conflicts, and saves valuable time for both patients and healthcare providers.
+
+\justify
+\vspace{0.1in}
+The platform also includes a robust admin module that oversees the entire system. The admin manages users, doctors, and appointments, monitors performance, and ensures smooth operation. This centralized control helps maintain system integrity and quickly addresses any issues that may arise, further enhancing reliability and user trust.
+
+The integration of AI in the system serves multiple purposes. It not only assists in preliminary diagnosis by analyzing symptoms intelligently but also improves healthcare accessibility by quickly connecting patients with the right doctors. Moreover, it enhances the efficiency of doctor-patient interactions, allowing healthcare providers to manage their appointments effectively while patients receive timely guidance and support. The system also helps reduce the burden on hospitals and clinics, as many minor queries and initial assessments can be handled digitally, allowing doctors to focus on critical cases.
+\justify
+\vspace{0.1in}
+From a societal perspective, this project offers significant benefits. It empowers patients to take proactive steps in monitoring their health, promotes informed decision-making regarding medical consultations, and reduces the stress associated with navigating the healthcare system. For doctors, it provides a structured workflow that improves appointment management and patient care efficiency. Overall, the AI Powered Symptom Checker and Doctor Appointment System represents a forward-thinking approach to healthcare — combining technology, intelligence, and convenience to make medical services more accessible, accurate, and user-centric.
+
+\vspace{0.1in}
+\section{Problem Statement}
+  \justify
+    \fontsize{12}{22}\selectfont
+
+Patients often face difficulties in identifying the cause of their symptoms and selecting the appropriate medical specialist, which leads to delayed diagnosis and ineffective treatment. Managing doctor appointments manually is also time-consuming and inefficient for both patients and healthcare providers. Most existing healthcare systems address either appointment booking or basic symptom checking, but they lack a unified and intelligent solution that combines both functionalities.To overcome these challenges, the proposed AI-Powered Symptom Checker and Doctor Appointment System integrates AI-based symptom analysis, personalized doctor recommendations, and automated appointment scheduling within a single platform. This system aims to enhance healthcare accessibility, reduce patient confusion, and streamline the overall consultation process for greater efficiency and improved quality of care.
+\section{Scope of the Project}
+  \justify
+    \fontsize{12}{22}\selectfont
+\begin{itemize}
+    \item AI-Based Symptom Analysis
+    \item Doctor Recommendation
+    \item Seamless Appointment Management
+    \item Admin Control 
+    \item Improved Healthcare Accessibility
+\end{itemize}
+
+ 
+
+
+\end{introduction}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%% CHapetr 2:Literature Survey %%%%%%%%%%%%%%%%
+
+\chapter{Literature Survey}
+
+\begin{table}[H]
+\centering
+
+\begin{tabular}{|p{0.3cm}|p{3cm}|p{3.2cm}|p{3cm}|p{2.2cm}|p{2.5cm}|}
+\hline
+\textbf{Sl. No.} & \textbf{Author(s) \& Year} & \textbf{Title of Paper} & \textbf{Methodology / Technique} & \textbf{Findings / Results} & \textbf{Limitations} \\
+\hline
+1 & A. Kumar et al. (2021) & AI-driven Symptom Checker using NLP & Natural Language Processing and Decision Tree Classifier & Achieved 90\% accuracy in predicting probable diseases from user-input symptoms. & Limited to English language and predefined symptoms. \\
+\hline
+2 & S. Gupta et al. (2020) & Smart Healthcare Chatbot for Disease Prediction & CNN + LSTM hybrid model for text classification & Improved understanding of user symptom queries and response accuracy. & Requires large, diverse medical dataset for better generalization. \\
+\hline
+3 & M. Chen et al. (2022) & Medical Expert System using Deep Learning & Neural Network trained on clinical datasets & Provided early disease prediction and triage recommendations. & Lack of interpretability and explainability of deep models. \\
+\hline
+4 & R. Singh et al. (2019) & Online Doctor Appointment Scheduling System & Web-based system with MySQL backend & Simplified hospital management and reduced waiting time. & Does not integrate real-time doctor availability or patient history. \\
+\hline
+5 & L. Zhang et al. (2023) & Integration of AI Chatbot in Telemedicine & Transformer-based conversational AI model & Enabled real-time consultation and symptom tracking. & Privacy concerns and need for secure data handling. \\
+\hline
+
+\end{tabular}
+\caption{Summary of Literature Review on AI-based Symptom Analysis and Doctor Appointment Systems}
+\label{tab:lit_summary_healthcare}
+\end{table}
+\begin{systemrequirement}
+    
+
+\chapter{Software Requirements Specification}
+\vspace{0.3in}
+\pagestyle{fancy}
+\justify
+\fontsize{12}{22}\selectfont
+
+
+\section{Introduction}
+    \justify
+\fontsize{12}{22} \selectfont 
+
+The Software Requirements Specification (SRS) defines the functional and non-functional requirements of the AI Powered Symptom Checker and Doctor Appointment System. It describes what the software is intended to do without specifying how it will be implemented.
+
+The SRS serves as a formal agreement among all stakeholders, including patients, doctors, developers, and administrators, ensuring that the system meets all functional expectations and quality standards. Additionally, this document outlines the system’s hardware, software, and performance requirements, serving as a comprehensive guide for the development, testing, and deployment phases.
+
+The primary goal of the system is to bridge the gap between patients and healthcare providers. By offering intelligent symptom analysis, personalized doctor recommendations, and efficient appointment management, the system ensures that patients receive timely healthcare guidance and support. Simultaneously, it enables doctors and administrators to manage appointments and operations effectively, thereby improving the overall efficiency and reliability of healthcare services.
+\subsection{Purpose}
+    \justify
+\fontsize{12}{22} \selectfont 
+\vspace{0.1in}
+
+The purpose of this system is to clearly define both the functional and non-functional requirements, serving as a comprehensive reference document for developers and testers throughout the design, development, and validation phases. It aims to provide a shared understanding of the system’s features, constraints, and performance expectations among all stakeholders. Additionally, the system is intended to ensure that user needs are met, enhance healthcare accessibility, and offer a reliable, efficient, and secure platform for seamless doctor-patient interactions.
+\vspace{0.1in}
+\subsection{Definitions, Acronyms and Abbrevations}
+\justify
+\fontsize{12}{22} \selectfont 
+\vspace{0.1in}
+\begin{itemize}
+    \item API : Application Programming Interface, a set of defined rules that enable different systems to communicate with each other
+    \item End Users : End users are the individuals or organizations that ultimately use a product, service, or software application to fulfill their needs or accomplish specific tasks.
+    \item AI:Artificial Intelligence – the simulation of human intelligence by machines to perform tasks like symptom analysis and decision-making.
+    \item Admin:The administrator who manages users, doctors, appointments, and overall system performance.
+    \item Database:A structured collection of data that stores user, doctor, and appointment information.
+\end{itemize}
+
+\vspace{0.2in}
+\section{The Overall Description}
+\justify
+\vspace{0.2in}
+%0.1
+\subsection{Product Perspective}
+\justify
+\fontsize{12}{22} \selectfont 
+\vspace{0.1in}
+The AI Powered Symptom Checker and Doctor Appointment System is an intelligent healthcare platform that enables patients to input their symptoms, receive AI-based health suggestions, and book appointments with appropriate doctors. The system unifies patients, doctors, and administrators within a single platform, streamlining healthcare processes and improving the efficiency of consultations. The AI module plays a central role in analyzing symptoms and recommending suitable doctors based on specialization, availability, experience, and ratings.
+\vspace{0.1in}
+\subsection{User Classes and Characteristics}
+\justify
+\fontsize{12}{22} \selectfont 
+\vspace{0.1in}
+The system serves the following user types:
+\begin{itemize}
+    \item \textbf{Patients}: Enter symptoms, get doctor suggestions, and book appointments.
+    \item \textbf{Doctors}: Manage schedules, view patients, and update profiles.
+     \item \textbf{Admin}: Manage users, doctors, and appointments.
+\end{itemize}
+
+\vspace{0.1in}
+\subsection{Operating Environment}
+\justify
+\fontsize{12}{22} \selectfont 
+\vspace{0.1in}
+The system is developed using Python for backend logic and HTML, CSS, and JavaScript for the frontend interface. It operates on Windows OS and is compatible with modern web browsers such as Chrome and Edge. Internet connectivity is required for full functionality. The system also supports standard database management systems for storing user, doctor, and appointment data securely.
+
+
+\vspace{0.1in}
+\section{ Specific Requirements}
+This section contains all of the functional and quality requirements of the system. It gives detailed description of the system and all its features.
+
+\vspace{0.1in}
+\subsection{ Hardware Requirements}
+\justify
+\fontsize{12}{22} \selectfont 
+\vspace{0.1in}
+\begin{itemize}
+    \item  Processor: Intel i3 or above
+    \item  RAM: 4 GB minimum
+    \item  Storage: 100 GB
+    \item  System Type: 64-bit Operating System
+    \item  Network: Stable internet connection
+\end{itemize}
+
+\vspace{0.1in}
+\subsection{Software requirements}
+\justify
+\fontsize{12}{22} \selectfont 
+\vspace{0.1in}
+\begin{itemize}
+    \item  Operating System: Windows 10 or above / Linux / macOS
+
+    \item IDE / Editor: Visual Studio Code or PyCharm
+
+    \item  Programming Languages: Python (for AI and backend), HTML, CSS, JavaScript (for frontend)
+
+    \item Frameworks: Django or Flask (Backend Framework), Bootstrap (Frontend)
+    \item Database: MySQL or PostgreSQL
+    \item Libraries / Packages: NumPy, Pandas, Scikit-learn, TensorFlow (for AI module), SMTP or Twilio (for notifications)
+\end{itemize}
+
+\vspace{0.1in}
+\subsection{Functional Requirements}
+\justify
+\fontsize{12}{22} \selectfont 
+\vspace{0.1in}
+\begin{itemize}
+    \item Users must be able to register as patients or doctors and securely log in or log out of the system.
+    \item Patients should be able to enter symptoms, after which the AI module analyzes the input and suggests suitable doctors.
+    \item The system should allow patients to book, reschedule, or cancel appointments through their dashboards.
+    \item Doctors should be able to view and manage appointments, update availability, and accept or reject bookings.
+    \item The admin module should enable administrators to manage all user accounts, monitor doctor information, and maintain appointment records.
+    \item Notifications must be sent to both doctors and patients through email or SMS for appointment confirmation, cancellation, or updates.
+    \item The system should provide AI-generated reports or summaries for patients based on their symptom analysis.
+\end{itemize}
+
+\vspace{0.1in}
+\subsection{ Non functional requirements}
+\justify
+\fontsize{12}{22} \selectfont 
+\vspace{0.1in}
+\begin{enumerate}
+\item Performance:The system must ensure quick response times for AI analysis and appointment booking processes.
+\item Reliability:The platform should operate consistently without data loss or errors, ensuring accurate and secure communication.
+\item Availability:The system should be available 24/7 for users to check symptoms and manage appointments globally.
+\item Maintainability: The platform should be easy to maintain, with error handling and clear documentation.
+\item Maintainability: The platform should be easy to maintain, with error handling and clear documentation.
+\item Maintainability: The platform should be easy to maintain, with error handling and clear documentation.
+\item Portability: The platform should support different types of events (e.g., weddings, conferences) and be adaptable for future growth.
+\end{enumerate}
+\end{systemrequirement}
+
+
+   
+%%%%%%%%% CHapetr 3:Software Requirements Specification %%%%%%%%%%%%
+
+\begin{systemdesign}
+\chapter{System Analysis and Design}
+\vspace{0.3in}
+\section{Architectural Design}
+\vspace{0.1in}
+     \justify
+    \fontsize{12}{22}\selectfont
+ System design represents a plan or drawing that shows the function along with working
+of a system.
+
+
+% \begin{figure}[H]
+%     \centering
+%     % Replace 'architecture_design.png' with the path to your architecture design diagram
+%     \includegraphics[width=4in, height=4in]{ArchietectureDiagram of DR.png}
+%     \centering
+%     \caption{System Architecture Design}
+    
+%     \label{fig:architecture}
+% \end{figure}
+
+\justify
+System design provides a structural overview that illustrates how different components of the system interact and function together.
+
+The Figure 4.1 shows the System Architecture of the AI-Based Symptom Analysis System. At the center of the architecture is the User, who can either be a Patient or a Doctor.The Patient interacts with the system by entering symptoms and receiving AI-generated health analysis or preliminary diagnoses. They can also view doctor recommendations and book appointments if needed.The Doctor can manage their profile, view patient reports, provide medical feedback, and update consultation details.All user interactions are processed through the AI Engine, which uses Machine Learning Models and a Symptom Database to analyze input data and predict possible conditions. The Application Server handles the communication between the AI engine, user interface, and database.The Database (MongoDB/MySQL) stores patient data, doctor profiles, symptoms, and prediction results securely. An Email/Notification System sends alerts, confirmations, and health reports to users.Overall, this architecture demonstrates how users interact with the AI system, how data flows through backend components, and how the integrated modules (AI model, database, and notification system) collaborate to deliver health insights and appointments efficiently.
+
+ \begin{figure}[H]
+    \centering
+    \includegraphics[width=5in, height=4in]{WhatsApp Image 2025-11-03 at 12.07.30 PM.jpeg}
+\begin{figure}
+        \centering
+        
+        \label{fig:enter-label}
+    \end{figure}
+        \centering
+    \caption {System Architecture Design of AI-Based Symptom Analysis System}
+    \label{fig:architecture}
+\end{figure}
+
+\vspace{0.1in}
+\section{Use Case Diagram}
+    \justify
+    \vspace{0.1in}
+ The Use Case Diagram illustrates the interaction between the primary actors — Patients, Doctors, and Admin — and the AI-Powered Symptom Checker and Doctor Appointment System, showcasing its key functionalities and communication flow. This diagram helps in understanding how each actor interacts with the system to achieve specific goals and how the system responds to their actions.Patients, the main users, begin by registering and logging in to the system. Once authenticated, they can enter their symptoms through a user-friendly interface. The AI module processes the input, generates follow-up questions, and predicts possible medical conditions. Based on the analysis, the system recommends suitable doctors according to specialization, ratings, and availability. Patients can then book appointments, view booking details, and receive automated email notifications for confirmations, updates, or cancellations. This ensures that patients get timely medical guidance and access to the right healthcare professional.
+    \justify
+Doctors serve as the second primary actors of the system. They can log in to their dashboards to view patient appointment requests, accept or reject bookings, and manage their schedule accordingly. Once an appointment is accepted, the system updates the booking details automatically in both the doctor’s and patient’s dashboards, ensuring real-time synchronization. Doctors can also update their profiles, including specialization, availability, and contact details, allowing patients to find accurate and relevant information when booking consultations.The Admin plays a crucial supervisory role in the system. The admin is responsible for managing users (patients and doctors), overseeing appointments, and maintaining the system database. They can add, edit, or remove doctor profiles, approve new user registrations, and ensure that the system operates efficiently without errors or data inconsistencies. The admin also monitors the performance and ensures smooth integration between modules.
+    \justify
+   
+  An Email Service, represented as a secondary actor, facilitates automatic communication between the system, patients, and doctors. It sends notifications, appointment confirmations, cancellations, and reminders, helping maintain transparency and efficient communication throughout the process.
+\begin{figure}[H]
+    \centeringHence Thus, the Use Case Diagram effectively represents how different actors interact with the system and how each use case contributes to achieving the overall goal — to provide an intelligent, AI-assisted healthcare platform that simplifies diagnosis and doctor appointment management.A Use Case represents a set of actions or sequences of events performed by the system in collaboration with users (actors) to achieve a specific result. Each use case is represented as an ellipse, while the actors are depicted as stick figures connected to their respective use cases through solid lines. The Use Case Diagram is a behavioral diagram that visually demonstrates the functional requirements of the system and the relationships among the actors.
+    \includegraphics[width=6.5in, height=5in]{ChatGPT Image Nov 5, 2025, 05_24_42 AM}
+    \centering
+    \caption{Use Case Diagram}
+    \label{fig:architecture}
+\end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=\textwidth]{activity diagram of drs.png} % Ensure the filename is correct and matches the image file
+%     \caption{Activity Diagram of DRS}
+%     \label{fig:use_case}
+% \end{figure}
+
+% \end{systemdesign}
+\clearpage
+\pagestyle{fancy}
+\end{systemdesign}
+
+%%%%%%%%%%%%%%%%%%%%%%% CHapetr 4: System Design %%%%%%%%%%%%%%%%%
+
+ \newpage
+ \chapter{Implementation}
+
+\begin{itemize}
+    \item \textbf{Overview:} Describe the overall implementation process and how the system components were integrated to achieve the project objectives.
+    
+    \item \textbf{Modules Description:} Explain each functional module of the system, its purpose, and how it interacts with other modules.
+    
+    \item \textbf{Algorithm / Pseudocode:} Present the main algorithm or logic flow used in the system. Include pseudocode or step-by-step procedures for the core functions.
+    
+    \item \textbf{Tools and Technologies Used:} Mention the programming languages, frameworks, libraries, and development tools used for implementation.
+    
+    \item \textbf{Interface and Screenshots:} Display the key interfaces or output screens of the system with brief explanations of their functions.
+\end{itemize}
+% Code for inserting figure
+\begin{figure}[H]
+\centering
+%\includegraphics[width=0.8\textwidth]{pic/modular.png}
+\caption{System Architecture Diagram}
+\label{fig:architecture}
+\end{figure}
+As shown in Figure~\ref{fig:architecture}, the proposed system consists of multiple interconnected modules that handle data processing, model training, and visualization.
+
+\newpage
+
+% -------------------- Chapter 5 --------------------
+\chapter{Results and Discussion}
+
+\begin{itemize}
+    \item \textbf{Overview:} Summarize the experiments or testing conducted to evaluate the system.
+    
+    \item \textbf{Results:} Present the obtained results in the form of tables, charts, or screenshots. Highlight the major outcomes achieved.
+    
+    \item \textbf{Performance Evaluation:} Discuss how the system performs compared to expectations or existing solutions in terms of accuracy, speed, efficiency, or usability.
+    
+    \item \textbf{Discussion:} Interpret the results, relate them to the objectives, and discuss any observations or insights gained during implementation.
+    
+    \item \textbf{Limitations:} Mention any constraints or limitations identified during testing and implementation.
+\end{itemize}
+
+% -------------------- Chapter 6 --------------------
+\chapter{Conclusion and Future Work}
+
+\begin{itemize}
+    \item \textbf{Conclusion:} Provide a concise summary of the project, including the problem addressed, approach adopted, and key outcomes achieved.
+    
+    \item \textbf{Achievements:} Highlight the major contributions or innovations of your project and how they meet the stated objectives.
+    
+    \item \textbf{Limitations:} Briefly restate the system’s current limitations or areas that could not be covered within this scope.
+    
+    \item \textbf{Future Enhancements:} Suggest possible improvements, extensions, or new features that can be added in future work to enhance the system’s performance or usability.
+\end{itemize}
+ 
+
+%%%%%%%%%%%%%%%%%%%%%%% References %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\pagestyle{plain}
+\renewcommand{\bibname}{References}
+\addcontentsline{toc}{chapter}{References}
+\printbibliography
+
+%%%%%%%%%%%%%%%%%%%%%%% References %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
